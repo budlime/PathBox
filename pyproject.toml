@@ -1,0 +1,34 @@
+[tool.tox]
+legacy_tox_ini = """
+[tox]
+skipsdist = true
+envlist = py38
+
+[testenv]
+deps = nose
+commands = nosetests \
+            --ignore-files=[Pp]ath.+ \
+            --all-modules \
+            --traverse-namespace \
+            --with-doctest
+"""
+
+[tool.black]
+line-length = 120
+target-version = ['py38']
+
+# regex
+exclude = '''/^\..+/'''
+
+[tool.pyright]
+include = ["src"]
+exclude = [
+  '**/__pycache__/',
+  '**/node_modules/',
+  '**/.git/',
+  '**/.tox',
+]
+
+pythonVersion = '3.8'
+reportIncompatibleMethodOverride = false
+reportUnkownMemberType = false

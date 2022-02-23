@@ -1,0 +1,4 @@
+[
+    { "caption": "PathBox: Open file", "command": "path_box_open" },
+    { "caption": "PathBox: Move file", "command": "path_box_move" }
+]

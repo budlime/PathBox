@@ -1,0 +1,19 @@
+[
+    // Steal open command and use it for PathBox.
+    { "keys": ["ctrl+o"], "command": "path_box_open" },
+    { "keys": ["f2"], "command": "path_box_move" },
+
+    // Allow over-riding of PathBox, and show normal system dialog.
+    { "keys": ["ctrl+shift+o"], "command": "prompt_open_file" },
+
+
+    ////////////////////////////////////////////////////////////////////////////
+    // Do not edit //
+    ////////////////////////////////////////////////////////////////////////////
+    {
+        "keys": ["tab"],
+        "command": "path_box_complete",
+        "context": [{"key": "path_box"}]
+    }
+    ////////////////////////////////////////////////////////////////////////////
+]
