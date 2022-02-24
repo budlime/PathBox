@@ -1,10 +1,9 @@
 """
-A package to make opening files in Sublime Text a little bit less painful.
-Licensed under GPL V2.
-
 Mod by budRich 2018,2021,2022
 Written by Ross Hemsley and other collaborators 2013.
+See LICENSE for details.
 """
+
 
 import sublime
 import sublime_plugin
@@ -32,10 +31,8 @@ def show_completion_message(completion_type: int):
 
 class PathBox(sublime_plugin.WindowCommand):
     """
-    This is the command called by the UI.
-    input_panel contains an instance of the class
-    PathBoxInput when the input is active,
-    otherwise it contains None.
+    Actual WindowCommand classes using a pathbox
+    needs to inherit this class.
     """
 
     input_panel: "Optional[PathBoxInput]" = None
@@ -44,32 +41,24 @@ class PathBox(sublime_plugin.WindowCommand):
 class PathBoxInput:
     """
     This class encapsulates the behaviors relating
-    to the file open panel used by the package. We
-    create an instance when the panel is open, and
-    destroy it when the panel is closed.
+    to the inputbox used by the package. An
+    instance should be created by the same class
+    that inherited PathBox and assigned to
+    PathBox.input_panel.
     """
 
     def __init__(self, callback: Callable[..., None], prompt: str, start_text: Optional[str]):
-        # If the user presses tab, and nothing happens, remember it.
-        # If they press tab again, we show them a list of files.
 
         self.path_cache = None
-
         active_window = sublime.active_window()
 
         self.view: sublime.View = active_window.show_input_panel(
             "%s: " % (prompt),
             tilde_prefix(start_text, True) if start_text else "",
             callback,
-            self.update,
+            None,
             self.cancel,
         )
-
-    def update(self, text: str):
-        """
-        If the user updates the input, reset the 'failed completion' flag.
-        """
-        del text
 
     def cancel(self):
         PathBox.input_panel = None
@@ -82,7 +71,7 @@ class PathBoxInput:
 
     def show_completions(self):
         """
-        Show a quick panel containing the possible completions.
+        Shows a quick panel with completions
         """
         active_window = sublime.active_window()
         directory, filename = split(self.get_text())
@@ -129,7 +118,8 @@ class PathBoxEventListener(sublime_plugin.EventListener):
 
 class PathBoxUpdateCommand(sublime_plugin.TextCommand):
     """
-    The edit command used for editing the text in the input panel.
+    This command is only called internally to get
+    access to the input_panels "Edit" object.
     """
 
     def run(self, edit: sublime.Edit, append: bool, text: str):
@@ -141,7 +131,8 @@ class PathBoxUpdateCommand(sublime_plugin.TextCommand):
 
 class PathBoxCompleteCommand(sublime_plugin.WindowCommand):
     """
-    The command called by tapping tab in the open panel.
+    This command is triggered when tab key is pressed
+    and context "path_box" is True (see event listener)
     """
 
     def run(self, *_):

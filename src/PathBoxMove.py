@@ -1,3 +1,8 @@
+"""
+by budRich 2018,2021,2022
+See LICENSE for details.
+"""
+
 import sublime
 import os
 

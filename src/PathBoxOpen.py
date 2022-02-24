@@ -1,3 +1,9 @@
+"""
+Mod by budRich 2018,2021,2022
+Written by Ross Hemsley and other collaborators 2013.
+See LICENSE for details.
+"""
+
 import sublime
 
 from os import path, makedirs, sep
@@ -21,9 +27,6 @@ class PathBoxOpenCommand(PathBox):
         PathBox.input_panel = PathBoxInput(self.open_file, "Open Path", target)
 
     def open_file(self, target: str):
-        """
-        Open the given path. Can be a directory OR a file.
-        """
 
         directory = ""
         filename = ""

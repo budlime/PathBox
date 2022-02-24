@@ -1,3 +1,8 @@
+"""
+Mod by budRich 2018,2021,2022
+Written by Ross Hemsley and other collaborators 2013.
+See LICENSE for details.
+"""
 from unittest import TestCase
 from os.path import commonprefix, split, isdir, expanduser, join, sep
 from os import listdir
@@ -12,9 +17,10 @@ class COMPLETION_TYPE:
 
 def get_completion(path: str) -> Tuple[str, int]:
     """
-    Function to find and return longest possible completion for a path p from a
-    list of candidates l. Returns new_path, status, completed.
-    Find filename and directory.
+    Function to find and return longest possible
+    completion for a path p from a list of
+    candidates l. Returns new_path, status,
+    completed. Find filename and directory.
     """
     directory, filename = split(path)
 
@@ -62,8 +68,10 @@ def longest_completion(filename: str, matches: List[str]) -> str:
 
 def get_lcs_completion_or_none(filename: str, directory_listing: List[str]) -> Optional[str]:
     """
-    If there is a unique way to complete the path such that the LCS is the same
-    as the query string, return that (similar to the way Fish shell works)
+    If there is a unique way to complete the path
+    such that the LCS is the same as the query
+    string, return that (similar to the way Fish
+    shell works)
     """
     completion = None
 

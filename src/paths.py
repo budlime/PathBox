@@ -1,3 +1,9 @@
+"""
+Mod by budRich 2018,2021,2022
+Written by Ross Hemsley and other collaborators 2013.
+See LICENSE for details.
+"""
+
 import sublime
 from os.path import isdir, expanduser, split, join
 from os import listdir, sep, getenv
@@ -32,9 +38,6 @@ def add_directory_to_project(target: str) -> None:
 
 
 def directory_listing_with_slahes(source_dir: str) -> List[str]:
-    """
-    Return directory listing with directories having trailing slashes.
-    """
     output: List[str] = []
     for filename in listdir(source_dir):
         if isdir(join(source_dir, filename)):
@@ -57,9 +60,8 @@ def tilde_prefix(target: str, use_tilde: bool):
 
 def get_current_directory(view_filename: Optional[str]) -> str:
     """
-    Returns current files parent directory.
-    Or Home directory
-    With a trailing slash
+    Returns current files parent directory. Or
+    Home directory With a trailing slash
     """
     if view_filename:
         directory, _ = split(view_filename)
