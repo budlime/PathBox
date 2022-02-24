@@ -1,5 +1,4 @@
 this is a modified fork of the [iOpener] package.  
-Below are the differences from the original:  
 
 ### python38/ST4
 With newer versions of sublime text
@@ -33,6 +32,17 @@ it with [ProjectManager] *(another 3rd party package)*.
 Worth noting is that by making the more general
 module `pathbox.py`, I decided to drop support
 for history.
+
+I also removed the settings so all searches are
+case insensitive, when a folder is selected with
+path_box_open it will always get added to the
+current project.
+
+With iOpener when multiple completions available
+when `tab` was pressed, an additional `tab` press
+was needed to show the completions. With PathBox
+completions are shown after the first press
+instead.
 
 
 [iOpener]: https://github.com/rosshemsley/iOpener
