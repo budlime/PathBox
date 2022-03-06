@@ -1,10 +1,9 @@
 [
-    // Steal open command and use it for PathBox.
-    { "keys": ["ctrl+o"], "command": "path_box_open" },
-    { "keys": ["f2"], "command": "path_box_move" },
+    // { "keys": ["ctrl+o"], "command": "path_box_open" },
+    // { "keys": ["f2"], "command": "path_box_move" },
     
-    // Allow over-riding of PathBox, and show normal system dialog.
-    { "keys": ["ctrl+shift+o"], "command": "prompt_open_file" },  
+    // "prompt_open_file" is normal system dialog.
+    // { "keys": ["ctrl+shift+o"], "command": "prompt_open_file" },
 
     
     ////////////////////////////////////////////////////////////////////////////
