@@ -97,12 +97,12 @@ class PathBoxInput:
                 sublime.active_window().focus_view(self.view)
             else:
                 sublime.active_window().open_file(new_path)
-                sublime.active_window().run_command("hide_panel", {"cancel": True})  # type: ignore
+                sublime.active_window().run_command("hide_panel", {"cancel": True})
         else:
             sublime.active_window().focus_view(self.view)
 
     def append_text(self, s: str):
-        self.view.run_command("path_box_update", {"append": True, "text": s})  # type: ignore
+        self.view.run_command("path_box_update", {"append": True, "text": s})
 
 
 class PathBoxEventListener(sublime_plugin.EventListener):

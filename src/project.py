@@ -1,5 +1,4 @@
 import sublime
-import re
 from os import makedirs
 from os.path import split, expanduser, join, isdir
 from .paths import tilde_prefix
@@ -39,9 +38,10 @@ def add_directory_to_project(target: str) -> None:
                 project_file_dir = directory
             else:
                 project_file_dir = sublime.expand_variables(project_file_dir, win.extract_variables())
+
             project_file_dir = expanduser(project_file_dir)
             project_file_path = join(project_file_dir, "%s.sublime-project" % (name))
-            workspace_file_path = re.sub(r"\.sublime-project$", ".sublime-workspace", project_file_path)
+            workspace_file_path = join(project_file_dir, "%s.sublime-workspace" % (name))
 
             if not isdir(project_file_dir):
                 makedirs(project_file_dir)
@@ -52,9 +52,9 @@ def add_directory_to_project(target: str) -> None:
             with open(workspace_file_path, mode="w", encoding="utf-8", newline="\n") as f:
                 f.write(sublime.encode_value({}, True))
 
-            self.window.run_command("close_project")  # type: ignore
-            self.window.run_command("close_workspace")  # type: ignore
-            self.window.run_command("close_all")  # type: ignore
+            win.run_command("close_all")
+            win.run_command("close_project")
+            win.run_command("close_workspace")
             subl("--project", workspace_file_path)
 
         win.show_input_panel(
