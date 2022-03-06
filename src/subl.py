@@ -38,7 +38,7 @@ def subl(*args: str):
 
         if sublime.platform() == "windows":
             # fix focus on windows
-            window.run_command("focus_neighboring_group")
+            window.run_command("focus_neighboring_group")  # type: ignore
             window.focus_view(view)
 
         sublime_plugin.on_activated(view.id())

@@ -52,9 +52,9 @@ def add_directory_to_project(target: str) -> None:
             with open(workspace_file_path, mode="w", encoding="utf-8", newline="\n") as f:
                 f.write(sublime.encode_value({}, True))
 
-            win.run_command("close_project")
-            win.run_command("close_workspace")
-            win.run_command("close_all")
+            self.window.run_command("close_project")  # type: ignore
+            self.window.run_command("close_workspace")  # type: ignore
+            self.window.run_command("close_all")  # type: ignore
             subl("--project", workspace_file_path)
 
         win.show_input_panel(

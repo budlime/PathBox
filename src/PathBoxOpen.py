@@ -9,7 +9,7 @@ import sublime
 from os import path, makedirs, sep
 
 from .pathbox import PathBox, PathBoxInput
-from .paths import get_current_directory, tilde_prefix
+from .paths import get_current_directory
 from .project import add_directory_to_project
 
 

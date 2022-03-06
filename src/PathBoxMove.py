@@ -27,14 +27,14 @@ class PathBoxMoveCommand(PathBox):
             return
 
         if self.view and self.view.is_dirty():
-            self.window.run_command("save")
+            self.window.run_command("save")  # type: ignore
 
         print(self.current_file, os.path.expanduser(path))
         if self.current_file:
             os.renames(self.current_file, os.path.expanduser(path))
 
         if os.access(new_file, os.R_OK):  # Can read new file
-            self.window.run_command("close")
+            self.window.run_command("close")  # type: ignore
             self.window.open_file(new_file)
         else:
             sublime.error_message("Error: Can not read new file: " + new_file)
