@@ -15,91 +15,36 @@
             }
         ]
     },
-    {     
+
+    {
         "id": "preferences",
-        "children":
-        [
+        "children": [
             {
                 "caption": "Package Settings",
-                "id": "package-settings",
                 "mnemonic": "P",
-                "children":
-                [
+                "id": "package-settings",
+                "children": [
                     {
                         "caption": "PathBox",
-                        "children":
-                        [
+                        "children": [
                             {
-                                "caption": "Settings – Default",
-                                "command": "open_file", "args":
-                                {
-                                    "file": "${packages}/PathBox/PathBox.sublime-settings"
+                                "caption": "Settings",
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/PathBox/PathBox.sublime-settings",
+                                    "default": "// Settings in here override those in \"PathBox/PathBox.sublime-settings\",\n\n{\n\t$0\n}\n"
                                 }
-                            },
-                            {
-                                "caption": "Settings – User",
-                                "command": "open_file", "args":
-                                {
-                                    "file": "${packages}/User/PathBox.sublime-settings"
+                            }, {
+                                "caption": "Key Bindings",
+                                "command": "edit_settings",
+                                "args": {
+                                    "base_file": "${packages}/PathBox/sublime-/Default (${platform}).sublime-keymap"
                                 }
-                            },
-                            { "caption": "-" },
-                            // Default Key mappings
-                            {
-                                "command": "open_file",
-                                "id": "bindings",
-                                "args": {
-                                    "file": "${packages}/PathBox/sublime-/Default (Windows).sublime-keymap",
-                                    "platform": "Windows"
-                                },
-                                "caption": "Key Bindings – Default"
-                            },
-                            {
-                                "command": "open_file",
-                                "args": {
-                                    "file": "${packages}/PathBox/sublime-/Default (OSX).sublime-keymap",
-                                    "platform": "OSX"
-                                },
-                                "caption": "Key Bindings – Default"
-                            },
-                            {
-                                "command": "open_file",
-                                "args": {
-                                    "file": "${packages}/PathBox/sublime-/Default (Linux).sublime-keymap",
-                                    "platform": "Linux"
-                                },
-                                "caption": "Key Bindings – Default"
-                            },
-
-                            // User Key mappings
-                            {
-                                "command": "open_file",
-                                "args": {
-                                    "file": "${packages}/User/Default (Windows).sublime-keymap",
-                                    "platform": "Windows"
-                                },
-                                "caption": "Key Bindings – User"
-                            },
-                            {
-                                "command": "open_file",
-                                "args": {
-                                    "file": "${packages}/User/Default (OSX).sublime-keymap",
-                                    "platform": "OSX"
-                                },
-                                "caption": "Key Bindings – User"
-                            },
-                            {
-                                "command": "open_file",
-                                "args": {
-                                    "file": "${packages}/User/Default (Linux).sublime-keymap",
-                                    "platform": "Linux"
-                                },
-                                "caption": "Key Bindings – User"
                             }
                         ]
                     }
                 ]
             }
         ]
-    }           
+    }
 ]
