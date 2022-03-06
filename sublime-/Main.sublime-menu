@@ -7,6 +7,11 @@
                 "caption":   "Open Path...",
                 "command":   "path_box_open",
                 "mnemonic":  "O"
+            },
+            {
+                "caption":   "Move/Rename",
+                "command":   "path_box_move",
+                "mnemonic":  "R"
             }
         ]
     },
@@ -28,14 +33,14 @@
                                 "caption": "Settings – Default",
                                 "command": "open_file", "args":
                                 {
-                                    "file": "${packages}/PathBox/path_box.sublime-settings"
+                                    "file": "${packages}/PathBox/PathBox.sublime-settings"
                                 }
                             },
                             {
                                 "caption": "Settings – User",
                                 "command": "open_file", "args":
                                 {
-                                    "file": "${packages}/User/path_box.sublime-settings"
+                                    "file": "${packages}/User/PathBox.sublime-settings"
                                 }
                             },
                             { "caption": "-" },

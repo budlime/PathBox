@@ -9,33 +9,33 @@ import sublime
 from os import path, makedirs, sep
 
 from .pathbox import PathBox, PathBoxInput
-from .paths import get_current_directory, tilde_prefix, add_directory_to_project
+from .paths import get_current_directory, tilde_prefix
+from .project import add_directory_to_project
 
 
 class PathBoxOpenCommand(PathBox):
     def run(self):
+        current_file = None
+
         active_window = sublime.active_window()
         active_view = active_window.active_view()
 
         if active_view:
             current_file = active_view.file_name()
-        else:
-            current_file = None
 
-        target = get_current_directory(current_file)
-        target = tilde_prefix(target, True)
-        PathBox.input_panel = PathBoxInput(self.open_file, "Open Path", target)
+        folder = get_current_directory(current_file)
+        PathBox.input_panel = PathBoxInput(self.open_file, "Open Path", folder)
 
     def open_file(self, target: str):
+
+        if not target:
+            sublime.status_message("Warning: Ignoring empty path.")
+            return
 
         directory = ""
         filename = ""
 
         target = path.expanduser(target)
-
-        if not target:
-            sublime.status_message("Warning: Ignoring empty path.")
-            return
 
         # expanduser() adds a trailing sep to directories
         if target[-1] == sep:
@@ -52,9 +52,7 @@ class PathBoxOpenCommand(PathBox):
 
         if path.isdir(target):
             add_directory_to_project(target)
-
         else:
-            # If file doesn't exist, add a message in the status bar.
             if not path.isfile(target):
                 sublime.status_message("Created new buffer '" + filename + "'")
             sublime.active_window().open_file(target)
