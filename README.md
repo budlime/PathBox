@@ -15,34 +15,46 @@ sublime versions.
 ### Restructured the project 
 `iOpener.py` -> `pathbox.py`, `PathBoxOpen.py`
 
-I extracted the tabcompletion stuff into a separate module
+I extracted the tab-completion stuff into a separate module
 so it is "easy" to use it for other things than opening a file.
 
-**PathBoxMove** (`F2`) command will rename the **path** of the currently
+**PathBoxMove** command will rename the **path** of the currently
 open file. *i.e* move it. Using the same UI. If a directory needed
 doesn't exist it will get created.
 
-**PathBoxOpen** (`Ctrl+o`) command is similar to iOpener, it will also
+**PathBoxOpen** command is similar to iOpener, it will also
 create necessary directories when it is used to open a
 non-existing file. *i.e* creating a new file.
 If a directory is opened it gets added to the current
-project. If no project was open it will try to add
-it with [ProjectManager] *(another 3rd party package)*.
+project. 
+
+If the setting `"create_new_project_if_empty"` is
+set to **true**, a new project will get created
+when adding a directory when no project is active.
+
+It is also, in the settings file, possible to
+specify a directory where the `sublime-project`
+file should be placed in that case.
+(Defaults to "." *i.e.* the same directory that
+was added).
 
 Worth noting is that by making the more general
 module `pathbox.py`, I decided to drop support
 for history.
 
-I also removed the settings so all searches are
-case insensitive, when a folder is selected with
-path_box_open it will always get added to the
-current project.
-
-With iOpener when multiple completions available
+With iOpener when multiple completions is available
 when `tab` was pressed, an additional `tab` press
 was needed to show the completions. With PathBox
 completions are shown after the first press
 instead.
+
+You have to enable keybindings yourself,
+personally i use:  
+
+```JSON
+{ "keys": ["ctrl+o"], "command": "path_box_open" },
+{ "keys": ["f2"], "command": "path_box_move" },
+```
 
 
 [iOpener]: https://github.com/rosshemsley/iOpener
