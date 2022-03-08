@@ -2,7 +2,6 @@ import sublime
 from os import makedirs
 from os.path import split, expanduser, join, isdir
 from .paths import tilde_prefix
-from .subl import subl
 
 
 def add_directory_to_project(target: str) -> None:
