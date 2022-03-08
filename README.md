@@ -28,16 +28,6 @@ non-existing file. *i.e* creating a new file.
 If a directory is opened it gets added to the current
 project. 
 
-If the setting `"create_new_project_if_empty"` is
-set to **true**, a new project will get created
-when adding a directory when no project is active.
-
-It is also, in the settings file, possible to
-specify a directory where the `sublime-project`
-file should be placed in that case.
-(Defaults to "." *i.e.* the same directory that
-was added).
-
 Worth noting is that by making the more general
 module `pathbox.py`, I decided to drop support
 for history.
@@ -48,6 +38,15 @@ was needed to show the completions. With PathBox
 completions are shown after the first press
 instead.
 
+### preferences
+
+If the setting `"use_project_manager"` is set
+to **true**, new project will get created using
+the [ProjectManager] package if it is installed.  
+
+New projects is in that case created when a folder
+is opened with `path_box_open` in a empty project.
+
 You have to enable keybindings yourself,
 personally i use:  
 
@@ -55,7 +54,6 @@ personally i use:
 { "keys": ["ctrl+o"], "command": "path_box_open" },
 { "keys": ["f2"], "command": "path_box_move" },
 ```
-
 
 [iOpener]: https://github.com/rosshemsley/iOpener
 [ProjectManager]: https://github.com/randy3k/ProjectManager

@@ -1,23 +1,7 @@
 {
-  // this will add sublime-project files when a folder
-  // is added/opened with an empty project.
-  "create_new_project_if_empty": false,
-
-  // 'new_project_file_location' is only effective if
-  // 'create_new_project_if_empty' is set to true.
-
-  // if the value of 'new_project_file_location' is
-  // "." it will add the project files in the folder
-  // being added. If the value on the other hand is
-  // a path to a folder, the project files will get
-  // stored there.
-  "new_project_file_location": ".",
-
-  // to save all projectfiles for all projects added
-  // this way in a subfolder of the User package
-  // folder you can use the setting below.
-  // (this make it seamless to use with the ProjectManager package)
-  // (https://github.com/randy3k/ProjectManager)
-  
-  // "new_project_file_location": "${packages}/User/Projects",
+  // Use the package "PromjectManager" to create
+  // project when a folder is added/opened to a
+  // empty project.
+  // https://github.com/randy3k/ProjectManager
+  "use_project_manager": false,
 }

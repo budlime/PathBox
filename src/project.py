@@ -27,40 +27,5 @@ def add_directory_to_project(target: str) -> None:
         project_data.setdefault("folders", []).append(folder)
         win.set_project_data(project_data)
 
-    if newproject and settings.get("create_new_project_if_empty"):
-
-        def cb_new_project(name: str) -> None:
-            if len(name) < 1:
-                name = filename
-
-            project_file_dir = settings.get("new_project_file_location", ".")
-            if project_file_dir == ".":
-                project_file_dir = directory
-            else:
-                project_file_dir = sublime.expand_variables(project_file_dir, win.extract_variables())
-
-            project_file_dir = expanduser(project_file_dir)
-            project_file_path = join(project_file_dir, "%s.sublime-project" % (name))
-            workspace_file_path = join(project_file_dir, "%s.sublime-workspace" % (name))
-
-            if not isdir(project_file_dir):
-                makedirs(project_file_dir)
-
-            with open(project_file_path, mode="w", encoding="utf-8", newline="\n") as f:
-                f.write(sublime.encode_value(win.project_data(), True))
-
-            with open(workspace_file_path, mode="w", encoding="utf-8", newline="\n") as f:
-                f.write(sublime.encode_value({}, True))
-
-            win.run_command("close_all")
-            win.run_command("close_project")
-            win.run_command("close_workspace")
-            subl("--project", workspace_file_path)
-
-        win.show_input_panel(
-            "New Project: ",
-            filename,
-            cb_new_project,
-            None,
-            None,
-        )
+    if newproject and settings.get("create_new_project_with_project_manager"):
+        win.run_command("project_manager", {"action": "add_project"})
