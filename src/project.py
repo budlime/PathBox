@@ -4,8 +4,7 @@ See LICENSE for details.
 """
 
 import sublime
-from os import makedirs
-from os.path import split, expanduser, join, isdir
+from os.path import split
 from .paths import tilde_prefix
 
 
@@ -31,5 +30,5 @@ def add_directory_to_project(target: str) -> None:
         project_data.setdefault("folders", []).append(folder)
         win.set_project_data(project_data)
 
-    if newproject and settings.get("create_new_project_with_project_manager"):
+    if newproject and settings.get("use_project_manager"):
         win.run_command("project_manager", {"action": "add_project"})
